@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobTrackingProject.UI", "JobTrackingProject.UI\JobTrackingProject.UI.csproj", "{36EB1958-CF0E-4072-90D1-E23522B82A27}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36EB1958-CF0E-4072-90D1-E23522B82A27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36EB1958-CF0E-4072-90D1-E23522B82A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36EB1958-CF0E-4072-90D1-E23522B82A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36EB1958-CF0E-4072-90D1-E23522B82A27}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2093408D-0C9E-4922-B8BE-1762971725A1}
+	EndGlobalSection
+EndGlobal
