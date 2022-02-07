@@ -1,16 +1,16 @@
-﻿
+﻿@model RegisterDTO
 
 @{
     ViewBag.Title = "Kayıt ol";
 }
 
-@model RegisterDTO
+
 
 <!--====== Shoping Checkout Start  ======-->
 <section class="shoping-checkout-area section-gap">
     <div class="container">
         <div class="user-actions mb-40">
-            <p>Hesabınız varsa <a asp-controller="Account" asp-action="">Giriş yapmak için tıklayınız</a></p>
+            <p>Hesabınız varsa <a asp-controller="Account" asp-action="Login">Giriş yapmak için tıklayınız</a></p>
         </div>
         <form asp-controller="Account" asp-action="Register" method="post">
             <div class="row">

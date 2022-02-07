@@ -19,6 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\JobTrackingProject.BusinessLayer\JobTrackingProject.BusinessLayer.csproj" />
 		<ProjectReference Include="..\JobTrackingProject.DataAccessLayer\JobTrackingProject.DataAccessLayer.csproj" />
 		<ProjectReference Include="..\JobTrackingProject.DTO\JobTrackingProject.DTO.csproj" />
 		<ProjectReference Include="..\JobTrackingProject.Entities\JobTrackingProject.Entities.csproj" />

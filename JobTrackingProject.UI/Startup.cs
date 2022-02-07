@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JobTrackingProject.BusinessLayer.Services.Concrete;
+using JobTrackingProject.BusinessLayer.Services.Interface;
 using JobTrackingProject.DataAccessLayer.Concrete.EntityFrameworkCore.Context;
 using JobTrackingProject.Entities.Concrete.Identity;
 using Microsoft.AspNetCore.Identity;
@@ -54,6 +56,11 @@ namespace JobTrackingProject.UI
                 //options.SignIn.RequireConfirmedEmail = true; // mail onayý yapmayan kullanýcýlar giriþ yapamaz
 
             }).AddEntityFrameworkStores<MyContext>().AddDefaultTokenProviders();
+
+            services.AddTransient<IEmailSender, EmailSender>();
+
+            
+
             services.AddControllersWithViews();
         }
 
@@ -65,9 +72,13 @@ namespace JobTrackingProject.UI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobTrackingProject.Entities
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobTrackingProject.DataAccessLayer", "JobTrackingProject.DataAccessLayer\JobTrackingProject.DataAccessLayer.csproj", "{1A46F566-1FC8-4E2C-AA2A-A9AF6226C0CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobTrackingProject.DTO", "JobTrackingProject.DTO\JobTrackingProject.DTO.csproj", "{140E8051-ECCD-428A-8A5A-6EB8AE873D6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobTrackingProject.DTO", "JobTrackingProject.DTO\JobTrackingProject.DTO.csproj", "{140E8051-ECCD-428A-8A5A-6EB8AE873D6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobTrackingProject.BusinessLayer", "JobTrackingProject.BusinessLayer\JobTrackingProject.BusinessLayer.csproj", "{A54F0FEC-93A5-4325-BB9E-A3F643BAF520}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{140E8051-ECCD-428A-8A5A-6EB8AE873D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{140E8051-ECCD-428A-8A5A-6EB8AE873D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{140E8051-ECCD-428A-8A5A-6EB8AE873D6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A54F0FEC-93A5-4325-BB9E-A3F643BAF520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A54F0FEC-93A5-4325-BB9E-A3F643BAF520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A54F0FEC-93A5-4325-BB9E-A3F643BAF520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A54F0FEC-93A5-4325-BB9E-A3F643BAF520}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
