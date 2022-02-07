@@ -5,9 +5,11 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobTrackingProject.UI", "JobTrackingProject.UI\JobTrackingProject.UI.csproj", "{36EB1958-CF0E-4072-90D1-E23522B82A27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobTrackingProject.Entities", "JobTrackingProject.Entities\JobTrackingProject.Entities.csproj", "{DA306F97-85C4-44E0-B11A-AEA71811A5A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobTrackingProject.Entities", "JobTrackingProject.Entities\JobTrackingProject.Entities.csproj", "{DA306F97-85C4-44E0-B11A-AEA71811A5A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobTrackingProject.DataAccessLayer", "JobTrackingProject.DataAccessLayer\JobTrackingProject.DataAccessLayer.csproj", "{1A46F566-1FC8-4E2C-AA2A-A9AF6226C0CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobTrackingProject.DataAccessLayer", "JobTrackingProject.DataAccessLayer\JobTrackingProject.DataAccessLayer.csproj", "{1A46F566-1FC8-4E2C-AA2A-A9AF6226C0CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobTrackingProject.DTO", "JobTrackingProject.DTO\JobTrackingProject.DTO.csproj", "{140E8051-ECCD-428A-8A5A-6EB8AE873D6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{1A46F566-1FC8-4E2C-AA2A-A9AF6226C0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A46F566-1FC8-4E2C-AA2A-A9AF6226C0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A46F566-1FC8-4E2C-AA2A-A9AF6226C0CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{140E8051-ECCD-428A-8A5A-6EB8AE873D6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{140E8051-ECCD-428A-8A5A-6EB8AE873D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{140E8051-ECCD-428A-8A5A-6EB8AE873D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{140E8051-ECCD-428A-8A5A-6EB8AE873D6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
