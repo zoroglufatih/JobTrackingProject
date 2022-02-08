@@ -319,7 +319,7 @@ namespace JobTrackingProject.UI.Controllers
             if (result.Succeeded)
             {
                 TempData["Message"] = "Şifre değişikliğiniz gerçekleşmiştir.";
-                return View();
+                return RedirectToAction("Login","Account");
             }
             else
             {
