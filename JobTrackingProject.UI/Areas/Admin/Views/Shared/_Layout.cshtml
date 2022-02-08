@@ -2,12 +2,14 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	@await RenderSectionAsync("Styles",false)
 </head>
 <body>
-    <div>
-        @RenderBody()
-    </div>
+	<div>
+		@RenderBody()
+	</div>
+	@await RenderSectionAsync("Scripts",false)
 </body>
 </html>
