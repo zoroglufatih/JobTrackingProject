@@ -30,7 +30,7 @@ namespace JobTrackingProject.UI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddDbContext<MyContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
@@ -53,13 +53,13 @@ namespace JobTrackingProject.UI
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
 
-                //options.SignIn.RequireConfirmedEmail = true; // mail onayý yapmayan kullanýcýlar giriþ yapamaz
+                options.SignIn.RequireConfirmedEmail = true; // mail onayý yapmayan kullanýcýlar giriþ yapamaz
 
             }).AddEntityFrameworkStores<MyContext>().AddDefaultTokenProviders();
 
             services.AddTransient<IEmailSender, EmailSender>();
 
-            
+
 
             services.AddControllersWithViews();
         }

@@ -232,5 +232,102 @@ namespace JobTrackingProject.UI.Controllers
             }
             return View(model);
         }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult UpdatePassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> UpdatePassword(PasswordChangeDTO model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await _userManager.FindByIdAsync(HttpContext.GetUserId());
+
+            var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+            if (result.Succeeded)
+            {
+                ViewBag.Message = "Parola Güncelleme İşlemi Başarılı.";
+            }
+            else
+            {
+                ViewBag.Message = $"Bir Hata Oluştu. {ModelState.ToFullErrorString()}";
+            }
+            return RedirectToAction(nameof(Profile));
+        }
+
+        [AllowAnonymous]
+        public IActionResult ResetPassword() { return View(); }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                ViewBag.Message = "Girdiğiniz Email Bulunamadı";
+            }
+            else
+            {
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                var callbackUrl = Url.Action("ConfirmResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Scheme);
+                var emailMessage = new EmailMessage()
+                {
+                    Contacts = new string[] { user.Email },
+                    Body = $"Şifrenizi sıfırlamak için <a href='{HtmlEncoder.Default.Encode(callbackUrl)}' >tıklayınız</a> ",
+                    Subject = "Şifre Sıfırla"
+                };
+                await _emailSender.SendAsync(emailMessage);
+                ViewBag.Message = "Mailinize şifre güncelleme yönergemiz gönderilmiştir.";
+            }
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult ConfirmResetPassword(string userId, string code)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(code))
+            {
+                return BadRequest("Hatalı istek");
+            }
+            ViewBag.Code = code;
+            ViewBag.UserId = userId;
+            return View();
+        }
+        [AllowAnonymous, HttpPost]
+        public async Task<IActionResult> ConfirmResetPassword(ResetPasswordDTO model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await _userManager.FindByIdAsync(model.UserId);
+            if (user == null)
+            {
+                ModelState.AddModelError(string.Empty, "Kullanıcı Bulunamadı");
+                return View();
+            }
+            var code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(model.Code));
+            var result = await _userManager.ResetPasswordAsync(user, code, model.NewPassword);
+            if (result.Succeeded)
+            {
+                TempData["Message"] = "Şifre değişikliğiniz gerçekleşmiştir.";
+                return View();
+            }
+            else
+            {
+                var message = string.Join("<br>", result.Errors.Select(x => x.Description));
+                TempData["Message"] = message;
+                return View();
+            }
+        }
+
     }
 }
