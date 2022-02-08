@@ -191,7 +191,7 @@ namespace JobTrackingProject.UI.Controllers
 
             var model = new UserProfileDTO()
             {
-                Name = user.UserName,
+                Name = user.Name,
                 Surname = user.Surname,
                 Email = user.Email
             };
