@@ -188,7 +188,49 @@ namespace JobTrackingProject.UI.Controllers
         public async Task<IActionResult> Profile()
         {
             var user = await _userManager.FindByIdAsync(HttpContext.GetUserId());
-            return View();
+
+            var model = new UserProfileDTO()
+            {
+                Name = user.UserName,
+                Surname = user.Surname,
+                Email = user.Email
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Profile(UserProfileDTO model)
+        {
+            var user = await _userManager.FindByIdAsync(HttpContext.GetUserId());
+
+            user.Name = model.Name;
+            user.Surname = model.Surname;
+            if (user.Email != model.Email)
+            {
+                await _userManager.RemoveFromRoleAsync(user, RoleModels.User);
+                await _userManager.AddToRoleAsync(user, RoleModels.Passive);
+                user.Email = model.Email;
+
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Scheme);
+                var emailMessage = new EmailMessage()
+                {
+                    Contacts = new string[] { user.Email },
+                    Body = $"Email Adresinizi onaylamak için <a href ='{HtmlEncoder.Default.Encode(callbackUrl)}'>Buraya Tıklayınız.</a>",
+                    Subject = "Email Onayı"
+                };
+                await _emailSender.SendAsync(emailMessage);
+            }
+
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError(string.Empty, ModelState.ToFullErrorString());
+            }
+            return View(model);
         }
     }
 }

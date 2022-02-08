@@ -13,7 +13,7 @@ namespace JobTrackingProject.UI.Extensions
             return context.User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
         }
 
-        public static string ToFullErrorStrings(this ModelStateDictionary modelState)
+        public static string ToFullErrorString(this ModelStateDictionary modelState)
         {
             var message = new List<string>();
             foreach (var entry in modelState.Values)
