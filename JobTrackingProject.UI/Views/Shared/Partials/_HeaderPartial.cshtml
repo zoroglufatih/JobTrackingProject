@@ -21,6 +21,10 @@
                 <li class="reg">
                     @if (SignInManager.IsSignedIn(Context.User))
                     {
+                        if (@User.IsInRole("Admin"))
+                        {
+                            <a  asp-area="Admin" asp-controller="Manage" asp-action="Index">Admin Paneli</a>
+                        }
                         <a asp-action="Profile" asp-controller="Account">@User.Identity.Name</a>
                         <a asp-action="Logout" asp-controller="Account">Çıkış yap</a>
                     }
@@ -33,11 +37,6 @@
                             Log in
                         </a>
                     }
-
-
-
-
-
                 </li><!--/li -->
                 <li>
                     <div class="social-icon">
