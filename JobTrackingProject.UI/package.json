@@ -1,21 +1,21 @@
 {
-  "name": "itserviceapp",
+  "name": "jobtrackingproject.ui",
   "version": "1.0.0",
-  "description": "ITService Uygulaması",
+  "description": "JobTrackingProject",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emrebahar/FirstMvcProject.git"
+    "url": "git+https://github.com/zoroglufatih/JobTrackingProject.git"
   },
-  "author": "Emre Bahar",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/emrebahar/FirstMvcProject/issues"
+    "url": "https://github.com/zoroglufatih/JobTrackingProject/issues"
   },
-  "homepage": "https://github.com/emrebahar/FirstMvcProject#readme",
+  "homepage": "https://github.com/zoroglufatih/JobTrackingProject#readme",
   "dependencies": {
     "devextreme": "^21.2.5",
     "devextreme-aspnet-data": "^2.8.6",

@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="~/admin-assets/plugins/summernote/summernote-bs4.css">
 	<!-- Google Font: Source Sans Pro -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/vendor/devextreme/dist/css/dx.light.css" />
 	@await RenderSectionAsync("Styles",false)
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -72,7 +73,12 @@
 	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 	<script src="~/admin-assets/dist/js/pages/dashboard.js"></script>
 	<!-- AdminLTE for demo purposes -->
-	<script src="~/admin-assets/dist/js/demo.js"></script>
+<script src="~/admin-assets/dist/js/demo.js"></script>
+<script type="text/javascript" src="~/vendor/exceljs/dist/exceljs.min.js"></script>
+<script type="text/javascript" src="~/vendor/file-saver/dist/fileSaver.min.js"></script>
+<script type="text/javascript" src="~/vendor/jszip/dist/jszip.min.js"></script>
+<script type="text/javascript" src="~/vendor/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="~/vendor/devextreme/dist/js/dx.all.js"></script>
 	@await RenderSectionAsync("Scripts",false)
 </body>
 </html>

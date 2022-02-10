@@ -55,7 +55,7 @@ namespace JobTrackingProject.UI
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
 
-                options.SignIn.RequireConfirmedEmail = true; // mail onayý yapmayan kullanýcýlar giriþ yapamaz
+                //options.SignIn.RequireConfirmedEmail = true; // mail onayý yapmayan kullanýcýlar giriþ yapamaz
 
             }).AddEntityFrameworkStores<MyContext>().AddDefaultTokenProviders();
 
