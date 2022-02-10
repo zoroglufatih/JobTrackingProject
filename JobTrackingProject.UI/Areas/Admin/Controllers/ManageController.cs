@@ -1,4 +1,6 @@
-﻿using JobTrackingProject.DTO.RegisterDTO;
+﻿using JobTrackingProject.BusinessLayer.Services.Interface;
+using JobTrackingProject.DTO.Model;
+using JobTrackingProject.DTO.RegisterDTO;
 using JobTrackingProject.Entities.Concrete.Identity;
 using JobTrackingProject.UI.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -13,10 +15,13 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
     public class ManageController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IEmailSender _emailSender;
 
-        public ManageController(UserManager<ApplicationUser> userManager)
+
+        public ManageController(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
+            _emailSender = emailSender;
         }
 
         public IActionResult Index()
@@ -34,7 +39,7 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> OperatorRegisterAsync(RegisterDTO model)
+        public async Task<IActionResult> OperatorRegister(RegisterDTO model)
         {
             if (!ModelState.IsValid)
             {
@@ -57,15 +62,33 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
                 Name = model.Name,
                 Surname = model.Surname,
                 UserName = model.UserName,
-                Email = model.Email
+                Email = model.Email,
+                EmailConfirmed = true
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
                 result = await _userManager.AddToRoleAsync(user, RoleModels.Operator);
+                var emailMessage = new EmailMessage()
+                {
+                    Contacts = new string[]
+                    {
+                        user.Email,
+                    },
+                    Body = $"Kullanıcı adınız : {user.UserName} \n Şifreniz: {model.Password}",
+                    Subject = "Operatör olarak kayıt edildiniz."
+                };
+                await _emailSender.SendAsync(emailMessage);
 
             }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Bir hata oluştu");
+                return View(model);
+            }
             return View();
+
+
         }
     }
 }
