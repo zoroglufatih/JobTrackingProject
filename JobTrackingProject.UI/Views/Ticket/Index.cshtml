@@ -1,5 +1,5 @@
 ﻿@inject SignInManager<ApplicationUser> SignInManager
-@model UserViewDTO
+@model TicketDTO
 
 @{
     ViewBag.Title = "Arıza Kaydı";
@@ -62,24 +62,24 @@
                                     <div class="row">
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="firstname" placeholder="First Name" value="@Model.Name" name="firstname">
+                                                <input type="text" class="form-control" id="firstname" placeholder="First Name" value="@Model.UserName" name="firstname">
                                             </div><!--/.form-group-->
                                         </div><!--/.col-->
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="lastname" placeholder="Last Name" value="@Model.Surname" name="lastname">
+                                                <input type="text" class="form-control" id="lastname" placeholder="Last Name" value="@Model.UserSurname" name="lastname">
                                             </div><!--/.form-group-->
                                         </div><!--/.col-->
                                     </div><!--/.row-->
                                     <div class="row">
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" id="email" placeholder="Email" value="@Model.Email" name="email">
+                                                <input type="email" class="form-control" id="email" placeholder="Email" value="@Model.UserEmail" name="email">
                                             </div><!--/.form-group-->
                                         </div><!--/.col-->
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="phone" placeholder="Phone" value="@Model.PhoneNumber" name="phone">
+                                                <input type="text" class="form-control" id="phone" placeholder="Phone" value="@Model.UserPhoneNumber" name="phone">
                                             </div><!--/.form-group-->
                                         </div><!--/.col-->
                                     </div><!--/.row-->
