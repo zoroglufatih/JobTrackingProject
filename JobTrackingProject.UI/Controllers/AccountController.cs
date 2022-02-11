@@ -79,7 +79,9 @@ namespace JobTrackingProject.UI.Controllers
                 UserName = model.UserName,
                 Name = model.Name,
                 Surname = model.Surname,
-                Email = model.Email
+                Email = model.Email,
+
+                
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);

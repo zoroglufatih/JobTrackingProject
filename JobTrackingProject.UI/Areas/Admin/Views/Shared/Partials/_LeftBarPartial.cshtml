@@ -1,4 +1,6 @@
-﻿ <!-- Main Sidebar Container -->
+﻿@inject SignInManager<ApplicationUser> SignInManager
+
+ <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
@@ -23,61 +25,91 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-                with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a asp-area="Admin" asp-controller="Manage" asp-action="Index" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
-                        <p>
-                            Home
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a asp-area="Admin" asp-controller="Manage" asp-action="Users" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
-                        <p>
-                            Users
-                        </p>
-                    </a>
-                </li>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon far fa-envelope"></i>
-                        <p>
-                            Staff Register
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
+    with font-awesome or any other icon font library -->
+                @if (SignInManager.IsSignedIn(Context.User))
+                {
+                    if (User.IsInRole("Admin"))
+                    {
                         <li class="nav-item">
-                            <a asp-area="Admin" asp-controller="Manage" asp-action="OperatorRegister" class="nav-link">
+                            <a asp-area="Admin" asp-controller="Manage" asp-action="Index" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
-                                    Operator Register
+                                    Home
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a asp-area="Admin" asp-controller="Manage" asp-action="TechnicianRegister" class="nav-link">
+                            <a asp-area="Admin" asp-controller="Manage" asp-action="Users" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
-                                    Technician Register
+                                    Users
                                 </p>
                             </a>
                         </li>
 
-                    </ul>
-                </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-envelope"></i>
+                                <p>
+                                    Staff Register
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-area="Admin" asp-controller="Manage" asp-action="OperatorRegister" class="nav-link">
+                                        <i class="nav-icon far fa-image"></i>
+                                        <p>
+                                            Operator Register
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-area="Admin" asp-controller="Manage" asp-action="TechnicianRegister" class="nav-link">
+                                        <i class="nav-icon far fa-image"></i>
+                                        <p>
+                                            Technician Register
+                                        </p>
+                                    </a>
+                                </li>
 
-                <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
-                        <p>
-                            Gallery
-                        </p>
-                    </a>
-                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="pages/gallery.html" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Gallery
+                                </p>
+                            </a>
+                        </li>
+                    }
+                    else if (User.IsInRole("Operator"))
+                    {
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Operator" asp-action="Index" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Home
+                                </p>
+                            </a>
+                        </li>
+                    }
+                    else if (User.IsInRole("Technician"))
+                    {
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Technician" asp-action="Index" class="nav-link">
+                                <i class="nav-icon far fa-image"></i>
+                                <p>
+                                    Home
+                                </p>
+                            </a>
+                        </li>
+                    }
+
+                }
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

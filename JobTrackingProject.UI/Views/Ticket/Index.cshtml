@@ -1,0 +1,119 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@model UserViewDTO
+
+@{
+    ViewBag.Title = "Arıza Kaydı";
+}
+
+<section class="contact">
+    <div class="container">
+        <div class="contact-details">
+            <div class="section-header contact-head  text-center">
+                <h2>Arıza Kayıt</h2>
+                <p>
+                    Arızanız Arızamızdır. Arızanız Mı Var ? Arayın Düzeltelim.
+
+                </p>
+            </div><!--/.section-header-->
+            <div class="contact-content">
+                <div class="row">
+                    <div class="col-sm-offset-1 col-sm-5">
+                        <div class="single-contact-box">
+                            <div class="contact-right">
+                                <div class="contact-adress">
+                                    <div class="contact-office-address">
+                                        <h3>contact info</h3>
+                                        <p>
+                                            125, Park street avenue, Brocklyn, Newyork.
+                                        </p>
+                                        <div class="contact-online-address">
+                                            <div class="single-online-address">
+                                                <i class="fa fa-phone"></i>
+                                                +905315863798
+                                            </div><!--/.single-online-address-->
+
+                                            <div class="single-online-address">
+                                                <i class="fa fa-envelope-o"></i>
+                                                <span>feyserviceas@gmail.com</span>
+                                            </div><!--/.single-online-address-->
+                                        </div><!--/.contact-online-address-->
+                                    </div><!--/.contact-office-address-->
+                                    <div class="contact-office-address">
+                                        <h3>social partner</h3>
+                                        <div class="contact-icon">
+                                            <ul>
+                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li><!--/li-->
+                                                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li><!--/li-->
+                                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li><!--/li-->
+                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li><!--/li-->
+                                            </ul><!--/ul-->
+                                        </div><!--/.contact-icon-->
+                                    </div><!--/.contact-office-address-->
+
+                                </div><!--/.contact-address-->
+                            </div><!--/.contact-right-->
+                        </div><!--/.single-contact-box-->
+                    </div><!--/.col-->
+                    <div class="col-sm-5">
+                        <div class="single-contact-box">
+                            <div class="contact-form">
+                                <h3>Leave us a Massage Here</h3>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="firstname" placeholder="First Name" value="@Model.Name" name="firstname">
+                                            </div><!--/.form-group-->
+                                        </div><!--/.col-->
+                                        <div class="col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="lastname" placeholder="Last Name" value="@Model.Surname" name="lastname">
+                                            </div><!--/.form-group-->
+                                        </div><!--/.col-->
+                                    </div><!--/.row-->
+                                    <div class="row">
+                                        <div class="col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" id="email" placeholder="Email" value="@Model.Email" name="email">
+                                            </div><!--/.form-group-->
+                                        </div><!--/.col-->
+                                        <div class="col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="phone" placeholder="Phone" value="@Model.PhoneNumber" name="phone">
+                                            </div><!--/.form-group-->
+                                        </div><!--/.col-->
+                                    </div><!--/.row-->
+
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option>
+                                                Kategoriler
+                                            </option>
+                                        </select>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control" rows="7" id="comment" placeholder="Arıza Bilgisi"></textarea>
+                                            </div><!--/.form-group-->
+                                        </div><!--/.col-->
+                                    </div><!--/.row-->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="single-contact-btn pull-right">
+                                                <button class="contact-btn" type="button">send message</button>
+                                            </div><!--/.single-single-contact-btn-->
+                                        </div><!--/.col-->
+                                    </div><!--/.row-->
+                                </form><!--/form-->
+                            </div><!--/.contact-form-->
+                        </div><!--/.single-contact-box-->
+                    </div><!--/.col-->
+                </div><!--/.row-->
+            </div><!--/.contact-content-->
+        </div><!--/.contact-details-->
+    </div><!--/.container-->
+
+</section><!--/.contact-->

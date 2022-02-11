@@ -23,7 +23,17 @@
                     {
                         if (@User.IsInRole("Admin"))
                         {
-                            <a  asp-area="Admin" asp-controller="Manage" asp-action="Index">Admin Paneli</a>
+                            <a asp-area="Admin" asp-controller="Manage" asp-action="Index">Admin Paneli</a>
+                        }
+                        else if (User.IsInRole("Operator"))
+                        {
+                            <a asp-area="Admin" asp-controller="Operator" asp-action="Index">Operator Paneli</a>
+
+                        }
+                        else if (User.IsInRole("Technician"))
+                        {
+                            <a asp-area="Admin" asp-controller="Technician" asp-action="Index">Teknisyen Paneli</a>
+
                         }
                         <a asp-action="Profile" asp-controller="Account">@User.Identity.Name</a>
                         <a asp-action="Logout" asp-controller="Account">Çıkış yap</a>
