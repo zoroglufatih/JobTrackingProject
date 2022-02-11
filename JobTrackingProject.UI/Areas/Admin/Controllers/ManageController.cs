@@ -90,5 +90,63 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
 
 
         }
+
+        [HttpGet]
+        public IActionResult TechnicianRegister()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> TechnicianRegister(RegisterDTO model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await _userManager.FindByNameAsync(model.UserName);
+            if (user != null)
+            {
+                ModelState.AddModelError(nameof(model.UserName), "Bu kullanıcı adı ile kayıt yapılmıştır.");
+                return View(model);
+            }
+            user = await _userManager.FindByEmailAsync(model.Email);
+            if (user != null)
+            {
+                ModelState.AddModelError(nameof(model.Email), "Bu E-mail ile kayıt yapılmıştır.");
+                return View(model);
+            }
+            user = new ApplicationUser()
+            {
+                Name = model.Name,
+                Surname = model.Surname,
+                UserName = model.UserName,
+                Email = model.Email,
+                EmailConfirmed = true
+            };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                result = await _userManager.AddToRoleAsync(user, RoleModels.Technician);
+                var emailMessage = new EmailMessage()
+                {
+                    Contacts = new string[]
+                    {
+                        user.Email,
+                    },
+                    Body = $"Kullanıcı adınız : {user.UserName} \n Şifreniz: {model.Password}",
+                    Subject = "Teknisyen olarak kayıt edildiniz."
+                };
+                await _emailSender.SendAsync(emailMessage);
+
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Bir hata oluştu");
+                return View(model);
+            }
+            return RedirectToAction("Index","Manage",new {area="Admin"});
+
+
+        }
     }
 }
