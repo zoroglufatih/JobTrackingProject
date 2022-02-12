@@ -104,6 +104,8 @@ namespace JobTrackingProject.UI.Controllers
                 };
 
                 await _emailSender.SendAsync(emailMessage);
+                
+                TempData["Message"] = "Kayıt işleminiz gerçekleşmiştir. Mail onayı için email hesabınızı kontrol ediniz.";
 
                 return RedirectToAction("Login", "Account");
             }
@@ -227,6 +229,7 @@ namespace JobTrackingProject.UI.Controllers
                 await _emailSender.SendAsync(emailMessage);
             }
 
+            TempData["Message"] = "Profil güncelleme işleminiz gerçekleşmiştir.";
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
             {
@@ -254,11 +257,13 @@ namespace JobTrackingProject.UI.Controllers
             var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
             if (result.Succeeded)
             {
-                ViewBag.Message = "Parola Güncelleme İşlemi Başarılı.";
+                //ViewBag.Message = "Parola Güncelleme İşlemi Başarılı.";
+                TempData["Message"] = "Parola Güncelleme İşlemi Başarılı.";
             }
             else
             {
-                ViewBag.Message = $"Bir Hata Oluştu. {ModelState.ToFullErrorString()}";
+                //ViewBag.Message = $"Bir Hata Oluştu. {ModelState.ToFullErrorString()}";
+                TempData["Message"] = $"Bir Hata Oluştu. {ModelState.ToFullErrorString()}";
             }
             return RedirectToAction(nameof(Profile));
         }
