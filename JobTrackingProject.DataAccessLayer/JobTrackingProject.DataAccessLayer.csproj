@@ -6,7 +6,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\JobTrackingProject.Entities\JobTrackingProject.Entities.csproj" />
+	  <ProjectReference Include="..\JobTrackingProject.DTO\JobTrackingProject.DTO.csproj" />
+	  <ProjectReference Include="..\JobTrackingProject.Entities\JobTrackingProject.Entities.csproj" />
 	</ItemGroup>
 
 </Project>
