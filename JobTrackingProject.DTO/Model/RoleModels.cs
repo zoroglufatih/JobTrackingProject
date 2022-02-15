@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace JobTrackingProject.UI.Models
+namespace JobTrackingProject.DTO.Model
 {
     public class RoleModels
     {

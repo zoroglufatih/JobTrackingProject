@@ -7,7 +7,6 @@ using JobTrackingProject.DTO.Model;
 using JobTrackingProject.DTO.RegisterDTO;
 using JobTrackingProject.Entities.Concrete.Identity;
 using JobTrackingProject.UI.Extensions;
-using JobTrackingProject.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
