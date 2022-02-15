@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+using JobTrackingProject.Entities.Concrete.Entities;
 
 namespace JobTrackingProject.Entities.Concrete.Identity
 {
@@ -17,5 +15,7 @@ namespace JobTrackingProject.Entities.Concrete.Identity
         [PersonalData]
         public string Surname { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        public List<TicketTechnician> TicketTechnicians { get; set; }
     }
 }

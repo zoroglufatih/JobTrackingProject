@@ -16,10 +16,14 @@ namespace JobTrackingProject.Entities.Concrete.Entities
         public string UserId { get; set; }
         public int CategoryId { get; set; }
         public string Description { get; set; }
+        public bool IsActive { get; set; } = true;
+
         [ForeignKey(nameof(UserId))]
         public virtual ApplicationUser ApplicationUser { get; set; }
         [ForeignKey(nameof(CategoryId))]
         public virtual Categories Categories { get; set; }
+
+        public List<TicketTechnician> TicketTechnicians { get; set; }
 
     }
 }

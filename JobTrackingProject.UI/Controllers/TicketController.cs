@@ -26,19 +26,45 @@ namespace JobTrackingProject.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var user = await _userManager.FindByIdAsync(HttpContext.GetUserId());
-            var model = new TicketDTO()
+            if (_signInManager.IsSignedIn(HttpContext.User))
             {
-                UserName = user.Name,
-                UserSurname = user.Surname,
-                UserEmail = user.Email,
-                UserPhoneNumber = user.PhoneNumber
-            };
-            return View(model);
+                var user = await _userManager.FindByIdAsync(HttpContext.GetUserId());
+
+                var model = new TicketDTO()
+                {
+                    UserName = user.Name,
+                    UserSurname = user.Surname,
+                    UserEmail = user.Email,
+                    UserPhoneNumber = user.PhoneNumber
+                };
+                return View(model);
+            }
+            
+            else
+            {
+                return View();
+            }
+            
+            
         }
         [HttpPost]
         public IActionResult Index(TicketDTO model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var ticket = new TicketDTO()
+            {
+                UserName = model.UserName,
+                UserSurname = model.UserEmail,
+                UserEmail = model.UserEmail,
+                UserPhoneNumber = model.UserPhoneNumber,
+                Description = model.Description,
+                CategoryId = model.CategoryId
+            };
+
             return View();
         }
     }

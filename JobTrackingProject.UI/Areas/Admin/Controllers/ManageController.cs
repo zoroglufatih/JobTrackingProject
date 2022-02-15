@@ -1,4 +1,5 @@
-﻿using JobTrackingProject.BusinessLayer.Services.Interface;
+﻿using System.Linq;
+using JobTrackingProject.BusinessLayer.Services.Interface;
 using JobTrackingProject.DTO.Model;
 using JobTrackingProject.DTO.RegisterDTO;
 using JobTrackingProject.Entities.Concrete.Identity;
@@ -6,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using JobTrackingProject.DataAccessLayer.Concrete.EntityFrameworkCore.Context;
+using JobTrackingProject.Entities.Concrete.Entities;
 
 namespace JobTrackingProject.UI.Areas.Admin.Controllers
 {
@@ -15,12 +18,14 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly MyContext _dbContext;
 
 
-        public ManageController(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+        public ManageController(UserManager<ApplicationUser> userManager, IEmailSender emailSender, MyContext dbContext)
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
@@ -146,6 +151,13 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
             return RedirectToAction("Index","Manage",new {area="Admin"});
 
 
+        }
+
+        [HttpGet]
+        public IActionResult AddCategory()
+        {
+
+            return View();
         }
     }
 }

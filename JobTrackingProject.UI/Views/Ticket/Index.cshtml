@@ -58,28 +58,28 @@
                         <div class="single-contact-box">
                             <div class="contact-form">
                                 <h3>Leave us a Massage Here</h3>
-                                <form>
+                                <form >
                                     <div class="row">
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="firstname" placeholder="First Name" value="@Model.UserName" name="firstname">
+                                                <input type="text" class="form-control" id="firstname" placeholder="First Name" name="firstname" asp-for="UserName">
                                             </div><!--/.form-group-->
                                         </div><!--/.col-->
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="lastname" placeholder="Last Name" value="@Model.UserSurname" name="lastname">
+                                                <input type="text" class="form-control" id="lastname" placeholder="Last Name"  name="lastname" asp-for="UserSurname">
                                             </div><!--/.form-group-->
                                         </div><!--/.col-->
                                     </div><!--/.row-->
                                     <div class="row">
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <input type="email" class="form-control" id="email" placeholder="Email" value="@Model.UserEmail" name="email">
+                                                <input type="email" class="form-control" id="email" placeholder="Email"  name="email" asp-for="UserEmail">
                                             </div><!--/.form-group-->
                                         </div><!--/.col-->
                                         <div class="col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="phone" placeholder="Phone" value="@Model.UserPhoneNumber" name="phone">
+                                                <input type="text" class="form-control" id="phone" placeholder="Phone"  name="phone" asp-for="UserPhoneNumber">
                                             </div><!--/.form-group-->
                                         </div><!--/.col-->
                                     </div><!--/.row-->
@@ -117,3 +117,4 @@
     </div><!--/.container-->
 
 </section><!--/.contact-->
+
