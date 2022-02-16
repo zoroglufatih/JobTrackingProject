@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JobTrackingProject.Entities.Concrete.Entities;
 
 namespace JobTrackingProject.DTO.TicketDTO
 {

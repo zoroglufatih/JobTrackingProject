@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JobTrackingProject.Entities.Concrete.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace JobTrackingProject.UI.Controllers
 {
@@ -26,6 +28,18 @@ namespace JobTrackingProject.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var categories = _dbContext.Categories.OrderBy(x => x.CategoryName);
+            var categoryList = new List<SelectListItem>()
+            {
+                new SelectListItem("Kategori yok", null)
+            };
+
+            foreach (var category in categories)
+            {
+                categoryList.Add(new SelectListItem(category.CategoryName, category.CategoryId.ToString()));
+            }
+
+            ViewBag.CategoryList = categoryList;
             if (_signInManager.IsSignedIn(HttpContext.User))
             {
                 var user = await _userManager.FindByIdAsync(HttpContext.GetUserId());
@@ -48,24 +62,35 @@ namespace JobTrackingProject.UI.Controllers
             
         }
         [HttpPost]
-        public IActionResult Index(TicketDTO model)
+        public async Task<IActionResult> Index(TicketDTO model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var ticket = new TicketDTO()
+            var user = await _userManager.FindByIdAsync(HttpContext.GetUserId());
+            var ticket = new Tickets()
             {
-                UserName = model.UserName,
-                UserSurname = model.UserEmail,
-                UserEmail = model.UserEmail,
-                UserPhoneNumber = model.UserPhoneNumber,
                 Description = model.Description,
-                CategoryId = model.CategoryId
+                CategoryId = model.CategoryId,
+                UserId = user.Id
             };
 
-            return View();
+            _dbContext.Tickets.Add(ticket);
+
+            try
+            {
+                _dbContext.SaveChanges();
+                TempData["Message"] = "Kaydınız başarıyla alınmıştır";
+                return RedirectToAction("Index", "Ticket");
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError(string.Empty, "Ticket alınamadı");
+                return View(model);
+            }
+            
         }
     }
 }
