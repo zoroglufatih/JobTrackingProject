@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DevExtreme.AspNet.Data;
+﻿using DevExtreme.AspNet.Data;
 using JobTrackingProject.DataAccessLayer.Concrete.EntityFrameworkCore.Context;
-using JobTrackingProject.DTO.Model;
-using JobTrackingProject.DTO.TicketDTO;
-using JobTrackingProject.Entities.Concrete.Entities;
 using JobTrackingProject.Entities.Concrete.Identity;
 using JobTrackingProject.UI.Extensions;
 using Microsoft.AspNetCore.Authorization;
@@ -13,48 +7,38 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
 
 namespace JobTrackingProject.UI.Areas.Admin.Controllers
 {
     [Route("api/[controller]/[action]")]
-    [Authorize(Roles = "Operator")]
-    public class TicketApiController : Controller
+    [Authorize(Roles = "Technician")]
+    public class TechnicianApiController : Controller
     {
         private readonly MyContext _dbContext;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public TicketApiController(MyContext dbContext, UserManager<ApplicationUser> userManager)
+        public TechnicianApiController(MyContext dbContext, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _dbContext = dbContext;
+            _signInManager = signInManager;
             _userManager = userManager;
         }
-        [HttpGet]
         public IActionResult Get(DataSourceLoadOptions loadOptions)
         {
+            //var technician = _userManager.FindByIdAsync(HttpContext.GetUserId()).Result;
+
             var data = _dbContext.Tickets
-                .Include(x => x.Categories)
                 .Include(x => x.ApplicationUser)
+                .Include(x=>x.Categories).Where(x=>x.TechnicianId == _signInManager.Context.GetUserId())
                 .ToList();
+
             return Ok(DataSourceLoader.Load(data, loadOptions));
         }
-
-        [HttpGet]
-        public IActionResult GetTeknisyenLookup(DataSourceLoadOptions loadOptions)
-        {
-            var data = _userManager.Users.ToList();
-            var model = new List<ApplicationUser>();
-            foreach (var item in data)
-            {
-                if (_userManager.IsInRoleAsync(item, RoleModels.Technician).Result)
-                {
-                    model.Add(item);
-                }
-            }
-            return Ok(DataSourceLoader.Load(model, loadOptions));
-        }
-
         [HttpPut]
-        public IActionResult Update(string key, string values)
+        public IActionResult Update(string key,string values)
         {
             if (!ModelState.IsValid)
             {
@@ -72,7 +56,6 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
                 return BadRequest();
             }
             return Ok();
-
         }
     }
 }

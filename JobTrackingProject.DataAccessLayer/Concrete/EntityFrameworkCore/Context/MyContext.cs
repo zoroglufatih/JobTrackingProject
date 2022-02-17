@@ -18,18 +18,9 @@ namespace JobTrackingProject.DataAccessLayer.Concrete.EntityFrameworkCore.Contex
             builder.Entity<Products>()
                 .Property(x => x.Price)
                 .HasPrecision(9, 2);
-
-            builder.Entity<TicketTechnician>()
-                .HasKey(x => new
-                {
-                    x.TicketId,
-                    x.TechnicianId
-                    
-                });
         }
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<Tickets> Tickets { get; set; }
-        public DbSet<TicketTechnician> TicketTechnicians { get; set; }
     }
 }

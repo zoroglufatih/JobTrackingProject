@@ -16,6 +16,5 @@ namespace JobTrackingProject.Entities.Concrete.Identity
         public string Surname { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
-        public List<TicketTechnician> TicketTechnicians { get; set; }
     }
 }

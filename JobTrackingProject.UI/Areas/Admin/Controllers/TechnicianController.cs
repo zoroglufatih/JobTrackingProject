@@ -15,5 +15,9 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
         {
             return View();
         }
+        public IActionResult Tickets()
+        {
+            return View();
+        }
     }
 }

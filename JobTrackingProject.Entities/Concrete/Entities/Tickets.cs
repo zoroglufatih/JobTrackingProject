@@ -17,13 +17,13 @@ namespace JobTrackingProject.Entities.Concrete.Entities
         public int CategoryId { get; set; }
         public string Description { get; set; }
         public bool IsActive { get; set; } = true;
+        public string TechnicianId { get; set; }
 
         [ForeignKey(nameof(UserId))]
         public virtual ApplicationUser ApplicationUser { get; set; }
         [ForeignKey(nameof(CategoryId))]
         public virtual Categories Categories { get; set; }
 
-        public List<TicketTechnician> TicketTechnicians { get; set; }
 
     }
 }
