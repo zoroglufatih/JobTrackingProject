@@ -18,11 +18,15 @@ namespace JobTrackingProject.Entities.Concrete.Entities
         public string Description { get; set; }
         public bool IsActive { get; set; } = true;
         public string TechnicianId { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime? TechnicianDate { get; set; }
+        public DateTime? TicketOverDate { get; set; }
 
         [ForeignKey(nameof(UserId))]
         public virtual ApplicationUser ApplicationUser { get; set; }
         [ForeignKey(nameof(CategoryId))]
         public virtual Categories Categories { get; set; }
+        public List<TicketProducts> TicketProducts { get; set; }
 
 
     }

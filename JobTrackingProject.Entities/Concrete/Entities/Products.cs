@@ -18,5 +18,7 @@ namespace JobTrackingProject.Entities.Concrete.Entities
         [ForeignKey(nameof(CategoryId))]
         public virtual Categories Categories { get; set; }
 
+        public List<TicketProducts> TicketProducts { get; set; }
+
     }
 }
