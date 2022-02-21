@@ -23,6 +23,8 @@ namespace JobTrackingProject.DTO.RegisterDTO
         [Required(ErrorMessage = "E-Posta alanı gereklidir.")]
         [EmailAddress]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Telefon alanı gereklidir.")]
+        public string PhoneNumber { get; set; }
         [Required(ErrorMessage = "Şifre alanı gereklidir.")]
         [StringLength(100, MinimumLength = 6, ErrorMessage = "Şifreniz minimum 6 karakterli olmalıdır!")]
         [Display(Name = "Şifre")]

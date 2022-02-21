@@ -79,8 +79,7 @@ namespace JobTrackingProject.UI.Controllers
                 Name = model.Name,
                 Surname = model.Surname,
                 Email = model.Email,
-
-                
+                PhoneNumber = model.PhoneNumber
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -196,7 +195,8 @@ namespace JobTrackingProject.UI.Controllers
             {
                 Name = user.Name,
                 Surname = user.Surname,
-                Email = user.Email
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber
             };
             return View(model);
         }
@@ -209,6 +209,7 @@ namespace JobTrackingProject.UI.Controllers
 
             user.Name = model.Name;
             user.Surname = model.Surname;
+            user.PhoneNumber = model.PhoneNumber;
             if (user.Email != model.Email)
             {
                 await _userManager.RemoveFromRoleAsync(user, RoleModels.User);

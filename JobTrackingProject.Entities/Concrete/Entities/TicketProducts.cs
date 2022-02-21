@@ -13,10 +13,10 @@ namespace JobTrackingProject.Entities.Concrete.Entities
         public int ProductId { get; set; }
         public double Price { get; set; }
 
-        [ForeignKey(nameof(ProductId))]
+        //[ForeignKey(nameof(ProductId))]
         public List<Products> Products { get; set; }
 
-        [ForeignKey(nameof(TicketId))]
+        //[ForeignKey(nameof(TicketId))]
         public List<Tickets> Tickets { get; set; }
     }
 }

@@ -18,6 +18,9 @@ namespace JobTrackingProject.Entities.Concrete.Entities
         public string Description { get; set; }
         public bool IsActive { get; set; } = true;
         public string TechnicianId { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+        public string AddressDescription { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public DateTime? TechnicianDate { get; set; }
         public DateTime? TicketOverDate { get; set; }

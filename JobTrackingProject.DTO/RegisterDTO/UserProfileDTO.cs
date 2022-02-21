@@ -21,5 +21,9 @@ namespace JobTrackingProject.DTO.RegisterDTO
         [Required(ErrorMessage = "E-posta alanı gereklidir.")]
         [EmailAddress]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Telefon alanı gereklidir.")]
+        [Display(Name = "Telefon")]
+        [StringLength(50)]
+        public string PhoneNumber { get; set; }
     }
 }
