@@ -117,6 +117,17 @@
 				{
 					caption: 'Aktif mi?',
 					dataField: "isActive"
+				},
+				{
+					cellTemplate: function (container, options) {
+						var idbtnEdit = "btnEdit" + options.rowIndex;
+						var current = options.data;
+						var url1 = `/Admin/technician/ticketDetail/${current.id}`;
+						$('<a id="' + idbtnEdit + '" href=' + url1 + ' target="_blank"/>')
+							.addClass('btn btn-block btn-primary btn-sm')
+							.text("Detay")
+							.appendTo(container);
+					}
 				}
 			]
 		}).dxDataGrid("instance");

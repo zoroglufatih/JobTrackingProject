@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JobTrackingProject.UI.Areas.Admin.Controllers
 {
-    [Authorize (Roles="Technician")]
+    [Authorize(Roles = "Technician")]
     [Area("Admin")]
     public class TechnicianController : Controller
     {
@@ -16,6 +16,11 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
             return View();
         }
         public IActionResult Tickets()
+        {
+            return View();
+        }
+
+        public IActionResult TicketDetail()
         {
             return View();
         }
