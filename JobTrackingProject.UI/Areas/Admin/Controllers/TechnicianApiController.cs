@@ -32,13 +32,13 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
 
             var data = _dbContext.Tickets
                 .Include(x => x.ApplicationUser)
-                .Include(x=>x.Categories).Where(x=>x.TechnicianId == _signInManager.Context.GetUserId())
+                .Include(x => x.Categories).Where(x => x.TechnicianId == _signInManager.Context.GetUserId())
                 .ToList();
 
             return Ok(DataSourceLoader.Load(data, loadOptions));
         }
         [HttpPut]
-        public IActionResult Update(string key,string values)
+        public IActionResult Update(string key, string values)
         {
             if (!ModelState.IsValid)
             {
@@ -46,7 +46,12 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
             }
 
             var data = _dbContext.Tickets.Find(Convert.ToInt32(key));
+
             JsonConvert.PopulateObject(values, data);
+            if (data.IsActive == false)
+            {
+                data.TicketOverDate = DateTime.Now;
+            }
             try
             {
                 _dbContext.SaveChanges();

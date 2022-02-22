@@ -1,5 +1,5 @@
 ﻿@{
-	ViewBag.Title = "Tickets";
+	ViewBag.Title = "Products";
 }
 <div class="container-fluid">
 	<div class="row">
@@ -8,7 +8,7 @@
 				<div class="card-header">
 					<div class="row align-items-center">
 						<div class="col">
-							<h4 class="card-title">Categories</h4>
+							<h4 class="card-title">Products</h4>
 						</div><!--end col-->
 					</div>  <!--end row-->
 				</div><!--end card-header-->
@@ -27,14 +27,14 @@
 <script>
 	var dataGrid = null;
 	$(() => {
-		var url = '../../../api/technicianapi';
+		var url = '../../../api/productapi';
 		dataGrid = $("#dxGrid").dxDataGrid({
 			remoteOperations: { paging: true, filtering: true, sorting: true, grouping: true, summary: true, groupPaging: true },
 			dataSource: DevExpress.data.AspNet.createStore({
-				key: 'ticketId',
+				key: 'productId',
 				loadUrl: `${url}/get`,
-				updateUrl: `${url}/update`,
-				//insertUrl: `${url}/insert`,
+				//updateUrl: `${url}/update`,
+				insertUrl: `${url}/insert`,
 				//deleteUrl: `${url}/delete`,
 				onBeforeSend(method, ajaxOptions) {
 					ajaxOptions.xhrFields = { withCredentials: true };
@@ -44,8 +44,8 @@
 			}),
 			editing: {
 				mode: 'form',
-				allowUpdating: true,
-				//allowAdding: true,
+				//allowUpdating: true,
+				allowAdding: true,
 				//allowDeleting: true
 			},
 			allowColumnResizing: true,
@@ -67,7 +67,7 @@
 			},
 			export: {
 				enabled: true,
-				fileName: `Tüm Kategoriler_${parseInt(Math.random() * 1000000000)}`,
+				fileName: `Tüm Ürünler_${parseInt(Math.random() * 1000000000)}`,
 				allowExportSelectedData: true
 			},
 			paging: {
@@ -83,41 +83,36 @@
 			},
 			columns : [
 				{
-					dataField: "ticketId",
+					dataField: "productId",
 					visible: false,
 					allowFiltering: false,
 					formItem: { visible: false }
 				},
 				{
-					dataField: "userId",
-					visible: false,
-					allowFiltering: false,
-					formItem: { visible: false }
+					caption: 'Ad',
+					dataField: "productName"
 				},
 				{
-					caption: "Kullanıcının adı",
-					dataField: "applicationUser.name"
+					caption:'Fiyat',
+					dataField:"price"
 				},
 				{
-					caption: "Kullanıcının Soyadı",
-					dataField: "applicationUser.surname"
-				},
-				{
-					caption: "Kategori",
-					dataField: "categories.categoryName"
-				},
-				{
-					caption: 'Açıklama',
-					dataField: "description"
-				},
-				{
-					caption: 'Atama Tarihi',
-					dataField: "technicianDate"
-				},
-				{
-					caption: 'Aktif mi?',
-					dataField: "isActive"
+					dataField: 'categoryId',
+					caption: 'Kategori',
+					width: 125,
+					lookup: {
+						dataSource: DevExpress.data.AspNet.createStore({
+							key: 'id',
+							loadUrl: `${url}/GetCategoriesLookup`,
+							onBeforeSend(method, ajaxOptions) {
+								ajaxOptions.xhrFields = { withCredentials: true };
+							}
+						}),
+						displayExpr: 'categoryName',
+						valueExpr: 'categoryId'
+					}
 				}
+
 			]
 		}).dxDataGrid("instance");
 	});

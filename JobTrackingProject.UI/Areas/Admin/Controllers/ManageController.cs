@@ -90,7 +90,7 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
                 ModelState.AddModelError(string.Empty, "Bir hata oluştu");
                 return View(model);
             }
-            return View();
+            return RedirectToAction("Index", "Manage", new { area = "Admin" });
 
 
         }
@@ -155,6 +155,12 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
 
         [HttpGet]
         public IActionResult AddCategory()
+        {
+
+            return View();
+        }
+        [HttpGet]
+        public IActionResult AddProduct()
         {
 
             return View();

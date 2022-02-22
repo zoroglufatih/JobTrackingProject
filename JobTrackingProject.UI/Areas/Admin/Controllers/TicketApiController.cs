@@ -62,6 +62,7 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
             }
 
             var data = _dbContext.Tickets.Find(Convert.ToInt32(key));
+            data.TechnicianDate = DateTime.Now;
             JsonConvert.PopulateObject(values, data);
             try
             {
