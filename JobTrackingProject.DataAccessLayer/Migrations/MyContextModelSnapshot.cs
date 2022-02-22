@@ -58,18 +58,20 @@ namespace JobTrackingProject.DataAccessLayer.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("JobTrackingProject.Entities.Concrete.Entities.TicketTechnician", b =>
+            modelBuilder.Entity("JobTrackingProject.Entities.Concrete.Entities.TicketProducts", b =>
                 {
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TechnicianId")
-                        .HasMaxLength(450)
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
-                    b.HasKey("TicketId", "TechnicianId");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
-                    b.ToTable("TicketTechnician");
+                    b.HasKey("TicketId", "ProductId");
+
+                    b.ToTable("TicketProducts");
                 });
 
             modelBuilder.Entity("JobTrackingProject.Entities.Concrete.Entities.Tickets", b =>
@@ -79,8 +81,14 @@ namespace JobTrackingProject.DataAccessLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AddressDescription")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -88,8 +96,20 @@ namespace JobTrackingProject.DataAccessLayer.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime?>("TechnicianDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("TechnicianId")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("TicketOverDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -316,6 +336,42 @@ namespace JobTrackingProject.DataAccessLayer.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("ProductsTicketProducts", b =>
+                {
+                    b.Property<int>("ProductsProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketProductsTicketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketProductsProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductsProductId", "TicketProductsTicketId", "TicketProductsProductId");
+
+                    b.HasIndex("TicketProductsTicketId", "TicketProductsProductId");
+
+                    b.ToTable("ProductsTicketProducts");
+                });
+
+            modelBuilder.Entity("TicketProductsTickets", b =>
+                {
+                    b.Property<int>("TicketsTicketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketProductsTicketId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketProductsProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("TicketsTicketId", "TicketProductsTicketId", "TicketProductsProductId");
+
+                    b.HasIndex("TicketProductsTicketId", "TicketProductsProductId");
+
+                    b.ToTable("TicketProductsTickets");
+                });
+
             modelBuilder.Entity("JobTrackingProject.Entities.Concrete.Entities.Products", b =>
                 {
                     b.HasOne("JobTrackingProject.Entities.Concrete.Entities.Categories", "Categories")
@@ -391,6 +447,36 @@ namespace JobTrackingProject.DataAccessLayer.Migrations
                     b.HasOne("JobTrackingProject.Entities.Concrete.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProductsTicketProducts", b =>
+                {
+                    b.HasOne("JobTrackingProject.Entities.Concrete.Entities.Products", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JobTrackingProject.Entities.Concrete.Entities.TicketProducts", null)
+                        .WithMany()
+                        .HasForeignKey("TicketProductsTicketId", "TicketProductsProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TicketProductsTickets", b =>
+                {
+                    b.HasOne("JobTrackingProject.Entities.Concrete.Entities.Tickets", null)
+                        .WithMany()
+                        .HasForeignKey("TicketsTicketId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JobTrackingProject.Entities.Concrete.Entities.TicketProducts", null)
+                        .WithMany()
+                        .HasForeignKey("TicketProductsTicketId", "TicketProductsProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
