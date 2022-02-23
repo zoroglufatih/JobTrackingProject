@@ -1,1 +1,27 @@
-﻿<h3>asdasda</h3>
+﻿@model TicketDetailDTO
+
+<h3>Ticket Detay Sayfası</h3>
+
+
+
+<form asp-controller="Technician" asp-action="TicketDetail" method="post">
+    <input asp-for="TicketId" type="hidden" />
+    <label asp-for="Name">@Model.Name</label>
+    <label asp-for="Surname">Kullanıcı Soyadı :@Model.Surname</label>
+
+    <label asp-for="Description">Açıklama : @Model.Description</label>
+    <label asp-for="TechnicianDate">Atanma Tarihi : @Model.TechnicianDate</label>
+
+    <label asp-for="TicketOverDate">Bitirme Tarihi : @Model.TicketOverDate</label>
+    @*<label asp-for="Longitude">Adres Bilgisi : @Model.Longitude @Model.Latitude @Model.AddressDescription</label>*@
+    <label asp-for="CategoryName">Kategori : @Model.CategoryName</label>
+
+    @foreach (var item in Model.Products)
+    {
+        <label>@item.ProductName</label>
+        <input type="checkbox" asp-route-id="@item.ProductId" id="asd" />
+        <br />
+    }
+    <input type="submit" value="İşlemi Bitir" class="btn btn-sm btn-danger" />
+</form>
+
