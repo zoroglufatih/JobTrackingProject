@@ -1,31 +1,77 @@
-﻿@model TicketDetailDTO
+﻿@using Microsoft.AspNetCore.Razor.Language.Extensions
+@using System.Security.Cryptography.X509Certificates
+@model TicketDetailDTO
 
 <h3>Ticket Detay Sayfası</h3>
 
 
 
 <form asp-controller="Technician" asp-action="TicketDetail" method="post">
-    <input asp-for="TicketId" type="hidden" />
-    <label asp-for="Name">@Model.Name</label>
-    <label asp-for="Surname">Kullanıcı Soyadı :@Model.Surname</label>
+	<input asp-for="TicketId" type="hidden" />
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<label asp-for="Name"> Ad: </label>
+				<input class="form-control" asp-for="Name" readonly /><br />
+			</div>
+			<div class="col-lg-4">
+				<label asp-for="Surname"> Soyad: </label>
+				<input class="form-control" asp-for="Surname" readonly /><br />
+			</div>
+			<div class="col-lg-4">
+				<label asp-for="Description"> Açıklama: </label>
+				<input class="form-control" asp-for="Description" readonly /><br />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<label>Atanma Tarihi: </label>
+				<input class="form-control" asp-for="TechnicianDate" readonly />
+				@*<input class="form-control" asp-for="TechnicianDate" readonly /><br />*@
+			</div>
+			<div class="col-lg-4">
+				<label>Bitirme Tarihi: </label>
+				<input class="form-control" asp-for="TicketOverDate" readonly />
+			</div>
+			<div class="col-lg-4">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<label>Kategori: </label>
+				<input class="form-control" asp-for="CategoryName" readonly />
+			</div>
+			<div class="col-lg-4"></div>
+		</div>
+		<br />
+		<div class="row">
+			<div class="col-lg-12">
+				@for (int i = 0; i< @Model.SelectedProducts.Count; i++)
+				{
+				<div>
+					<input type="hidden" asp-for="SelectedProducts[i].Id" />
+					<input asp-for="SelectedProducts[i].IsChecked" readonly />
+					<input asp-for="SelectedProducts[i].Name" readonly />
+					<input asp-for="SelectedProducts[i].Price" readonly />
+				</div>
+				<br />
+				}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-3">
+				<input type="submit" value="İşlemi Bitir" class="btn btn-sm btn-danger" />
+			</div>
 
-    <label asp-for="Description">Açıklama : @Model.Description</label>
-    <label asp-for="TechnicianDate">Atanma Tarihi : @Model.TechnicianDate</label>
+		</div>
+	</div>
+	@*<label asp-for="TechnicianDate">Atanma Tarihi : @Model.TechnicianDate</label>*@
 
-    <label asp-for="TicketOverDate">Bitirme Tarihi : @Model.TicketOverDate</label>
-    @*<label asp-for="Longitude">Adres Bilgisi : @Model.Longitude @Model.Latitude @Model.AddressDescription</label>*@
-    <label asp-for="CategoryName">Kategori : @Model.CategoryName</label>
+	@*<label asp-for="TicketOverDate">Bitirme Tarihi : @Model.TicketOverDate</label>*@
+	@*<label asp-for="Longitude">Adres Bilgisi : @Model.Longitude @Model.Latitude @Model.AddressDescription</label>*@
+	@*<label asp-for="CategoryName">Kategori : @Model.CategoryName</label>*@
 
-    @foreach (ProductSelectDTO item in Model.SelectedProducts)
-    {
-<div>
-    <input type="hidden" asp-for="@item.Id" />
-    <input asp-for="@item.IsChecked" readonly />
-    <input asp-for="@item.Name" readonly/>
-    <input asp-for="@item.Price" readonly/>
-</div>
-        
-    }
-    <input type="submit" value="İşlemi Bitir" class="btn btn-sm btn-danger" />
+
+
 </form>
 
