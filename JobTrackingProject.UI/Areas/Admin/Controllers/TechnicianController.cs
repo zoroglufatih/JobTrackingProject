@@ -57,7 +57,14 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
                 TicketId = data.TicketId,
                 TicketOverDate = data.TicketOverDate,
                 UserId = data.UserId,
-                Products = data.Categories.Products
+                Products = data.Categories.Products,
+                SelectedProducts = data.Categories.Products.Select(x=> new ProductSelectDTO()
+                {
+                    Id= x.ProductId,
+                    IsChecked=false,
+                    Name=x.ProductName,
+                    Price=x.Price
+                }).ToList()
             };
             return View(model);
         }

@@ -22,6 +22,7 @@ namespace JobTrackingProject.DTO.Model
         public string AddressDescription { get; set; }
         public DateTime? TechnicianDate { get; set; }
         public DateTime? TicketOverDate { get; set; }
+        public List<ProductSelectDTO> SelectedProducts { get; set; }
 
     }
 }

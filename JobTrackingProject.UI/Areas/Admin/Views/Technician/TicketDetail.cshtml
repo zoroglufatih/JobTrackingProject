@@ -16,11 +16,15 @@
     @*<label asp-for="Longitude">Adres Bilgisi : @Model.Longitude @Model.Latitude @Model.AddressDescription</label>*@
     <label asp-for="CategoryName">Kategori : @Model.CategoryName</label>
 
-    @foreach (var item in Model.Products)
+    @foreach (ProductSelectDTO item in Model.SelectedProducts)
     {
-        <label>@item.ProductName</label>
-        <input type="checkbox" asp-route-id="@item.ProductId" id="asd" />
-        <br />
+<div>
+    <input type="hidden" asp-for="@item.Id" />
+    <input asp-for="@item.IsChecked" readonly />
+    <input asp-for="@item.Name" readonly/>
+    <input asp-for="@item.Price" readonly/>
+</div>
+        
     }
     <input type="submit" value="İşlemi Bitir" class="btn btn-sm btn-danger" />
 </form>
