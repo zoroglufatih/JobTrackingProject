@@ -58,12 +58,12 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
                 TicketOverDate = data.TicketOverDate,
                 UserId = data.UserId,
                 Products = data.Categories.Products,
-                SelectedProducts = data.Categories.Products.Select(x=> new ProductSelectDTO()
+                SelectedProducts = data.Categories.Products.Select(x => new ProductSelectDTO()
                 {
-                    Id= x.ProductId,
-                    IsChecked=false,
-                    Name=x.ProductName,
-                    Price=x.Price
+                    Id = x.ProductId,
+                    IsChecked = false,
+                    Name = x.ProductName,
+                    Price = x.Price
                 }).ToList()
             };
             return View(model);
@@ -71,23 +71,29 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult TicketDetail(TicketDetailDTO model)
         {
-			//if (!ModelState.IsValid)
-			//{
-			//	return View(model);
-			//}
 
-			////var ticket = _dbContext.Tickets.FindAsync(model.TicketId);
-			//var tickets = _dbContext.Tickets.ToList();
-			//var list = new List<Tickets>();
-			//foreach (var item in tickets)
-			//{
-			//	if (item.TicketId == model.TicketId)
-			//	{
-			//		list.Add(item);
-			//	}
-			//}
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
-			return View(model);
+            foreach (var item in model.SelectedProducts)
+            {
+                var ticketproducts = new TicketProducts
+                {
+                    TicketId = model.TicketId,
+                    ProductId = item.Id,
+                    Price = Convert.ToDouble(item.Price)
+                };
+                _dbContext.TicketProducts.Add(ticketproducts);
+                //_dbContext.SaveChanges();
+            }
+
+            var data = _dbContext.Tickets.Find(model.TicketId);
+            data.IsActive = false;
+            data.TicketOverDate = DateTime.Now;
+            _dbContext.SaveChanges();
+            return RedirectToAction("Index", "Technician", new { area = "Admin" });
         }
     }
 }
