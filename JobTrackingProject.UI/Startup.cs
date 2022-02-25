@@ -1,23 +1,21 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using JobTrackingProject.BusinessLayer.MapperProfile;
+using JobTrackingProject.BusinessLayer.Services;
 using JobTrackingProject.BusinessLayer.Services.Concrete;
 using JobTrackingProject.BusinessLayer.Services.Interface;
 using JobTrackingProject.DataAccessLayer.Concrete.EntityFrameworkCore.Context;
 using JobTrackingProject.Entities.Concrete.Identity;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using System.IO;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using System;
+using System.IO;
 
 namespace JobTrackingProject.UI
 {
@@ -60,8 +58,13 @@ namespace JobTrackingProject.UI
 
             }).AddEntityFrameworkStores<MyContext>().AddDefaultTokenProviders();
 
-            services.AddTransient<IEmailSender, EmailSender>();
 
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddScoped<IPaymentService, IyzicoPaymentService>();
+            services.AddAutoMapper(options =>
+            {
+                options.AddProfile(typeof(PaymentProfile));
+            });
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(
                     options =>
