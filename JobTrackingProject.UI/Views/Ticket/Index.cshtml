@@ -86,7 +86,7 @@
                                     </div><!--/.row-->
 
 	                                <div class="form-group">
-		                                <select class="form-control" asp-for="CategoryId" asp-items="ViewBag.CategoryList">
+		                                <select class="combo-css" asp-for="CategoryId" asp-items="ViewBag.CategoryList">
 		                                </select>
 	                                </div>
 
@@ -113,6 +113,18 @@
             </div><!--/.contact-content-->
         </div><!--/.contact-details-->
     </div><!--/.container-->
-
+    @*style="border: 1px solid gray; width: 100%; height: 50px; text-align: center; color: gray; font-size: 17px;"*@
 </section><!--/.contact-->
 
+@section Styles{
+    <style>
+        .combo-css {
+            border: 1px solid gray; 
+            width: 100%; 
+            height: 50px; 
+            text-align: center; 
+            color: gray; 
+            font-size: 17px;
+        }
+    </style>
+}
