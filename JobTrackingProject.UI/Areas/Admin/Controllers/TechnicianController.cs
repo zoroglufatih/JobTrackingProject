@@ -71,23 +71,23 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult TicketDetail(TicketDetailDTO model)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(model);
-            //}
+			//if (!ModelState.IsValid)
+			//{
+			//	return View(model);
+			//}
 
-            ////var ticket = _dbContext.Tickets.FindAsync(model.TicketId);
-            //var tickets = _dbContext.Tickets.ToList();
-            //var list = new List<Tickets>();
-            //foreach (var item in tickets)
-            //{
-            //    if (item.TicketId == model.TicketId)
-            //    {
-            //        list.Add(item);
-            //    }
-            //}
-            
-            return View(model);
+			////var ticket = _dbContext.Tickets.FindAsync(model.TicketId);
+			//var tickets = _dbContext.Tickets.ToList();
+			//var list = new List<Tickets>();
+			//foreach (var item in tickets)
+			//{
+			//	if (item.TicketId == model.TicketId)
+			//	{
+			//		list.Add(item);
+			//	}
+			//}
+
+			return View(model);
         }
     }
 }

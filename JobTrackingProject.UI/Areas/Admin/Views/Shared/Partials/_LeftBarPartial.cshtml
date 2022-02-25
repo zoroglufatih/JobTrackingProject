@@ -75,11 +75,47 @@
 								
 							</ul>
 						</li>
+						<li class="nav-item has-treeview">
+							<a href="#" class="nav-link">
+								<i class="nav-icon far fa-envelope"></i>
+								<p>
+									Add Option 
+									<i class="fas fa-angle-left right"></i>
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item">
+									<a asp-area="Admin" asp-controller="Manage" asp-action="AddCategory" class="nav-link">
+										<i class="nav-icon far fa-image"></i>
+										<p>
+											Add Category
+										</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a asp-area="Admin" asp-controller="Manage" asp-action="AddProduct" class="nav-link">
+										<i class="nav-icon far fa-image"></i>
+										<p>
+											Add Product
+										</p>
+									</a>
+								</li>
+								
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a @*asp-area="" asp-controller="" asp-action=""*@ href="#" class="nav-link">
+								<i class="nav-icon far fa-image"></i>
+								<p>
+								 	All Tickets
+								</p>
+							</a>
+						</li>
 						<li class="nav-item">
 							<a asp-area="Admin" asp-controller="Manage" asp-action="AddCategory" class="nav-link">
 								<i class="nav-icon far fa-image"></i>
 								<p>
-									Category Add
+									Empty
 								</p>
 							</a>
 						</li>

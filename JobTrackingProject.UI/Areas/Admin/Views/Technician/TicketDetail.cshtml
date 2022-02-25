@@ -10,38 +10,36 @@
 	<input asp-for="TicketId" type="hidden" />
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-4">
+			<div class="col-lg-6">
 				<label asp-for="Name"> Ad: </label>
 				<input class="form-control" asp-for="Name" readonly /><br />
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-6">
 				<label asp-for="Surname"> Soyad: </label>
 				<input class="form-control" asp-for="Surname" readonly /><br />
 			</div>
-			<div class="col-lg-4">
-				<label asp-for="Description"> Açıklama: </label>
-				<input class="form-control" asp-for="Description" readonly /><br />
-			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-4">
+			<div class="col-lg-6">
 				<label>Atanma Tarihi: </label>
 				<input class="form-control" asp-for="TechnicianDate" readonly />
 				@*<input class="form-control" asp-for="TechnicianDate" readonly /><br />*@
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-6">
 				<label>Bitirme Tarihi: </label>
 				<input class="form-control" asp-for="TicketOverDate" readonly />
 			</div>
-			<div class="col-lg-4">
-			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-4">
+			<div class="col-lg-6">
 				<label>Kategori: </label>
 				<input class="form-control" asp-for="CategoryName" readonly />
 			</div>
-			<div class="col-lg-4"></div>
+			
+			<div class="col-lg-6">
+				<label asp-for="Description"> Açıklama: </label>
+				<input class="form-control" asp-for="Description" readonly /><br />
+			</div>
 		</div>
 		<br />
 		<div class="row">
