@@ -94,6 +94,7 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
             data.TicketOverDate = DateTime.Now;
             _dbContext.SaveChanges();
             return RedirectToAction("Index", "Technician", new { area = "Admin" });
+            
         }
     }
 }

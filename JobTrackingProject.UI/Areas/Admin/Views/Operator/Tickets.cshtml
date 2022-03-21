@@ -138,7 +138,18 @@
                         displayExpr: 'userName',
                         valueExpr: 'id'
                     }
-                }
+                },
+	            {
+		            cellTemplate: function (container, options) {
+			            var idbtnEdit = "btnEdit" + options.rowIndex;
+			            var current = options.data;
+			            var url1 = `/Admin/operator/ticketDetail/${current.ticketId}`;
+			            $('<a id="' + idbtnEdit + '" href=' + url1 + ' target="_blank"/>')
+				            .addClass('btn btn-block btn-primary btn-sm')
+				            .text("Detay")
+				            .appendTo(container);
+		            }
+	            }
             ]
         }).dxDataGrid("instance");
     });

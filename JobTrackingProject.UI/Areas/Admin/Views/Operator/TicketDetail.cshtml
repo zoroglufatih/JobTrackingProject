@@ -1,0 +1,76 @@
+﻿@using Microsoft.AspNetCore.Razor.Language.Extensions
+@using System.Security.Cryptography.X509Certificates
+@using System.Linq
+@model TicketDetailDTO
+
+
+
+
+
+<form asp-controller="Operator" asp-action="Tickets" method="post">
+	
+	<div class="container">
+		<h3>Ticket Detay Sayfası</h3>
+		<div class="row">
+			<div class="col-lg-6">
+				<label asp-for="Name"> Ad: </label>
+				<input class="form-control" asp-for="Name" readonly/><br/>
+			</div>
+			<div class="col-lg-6">
+				<label asp-for="Surname"> Soyad: </label>
+				<input class="form-control" asp-for="Surname" readonly/><br/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<label>Atanma Tarihi: </label>
+				<input class="form-control" asp-for="TechnicianDate" readonly/>
+				@*<input class="form-control" asp-for="TechnicianDate" readonly /><br />*@
+			</div>
+			<div class="col-lg-6">
+				<label>Bitirme Tarihi: </label>
+				<input class="form-control" asp-for="TicketOverDate" readonly/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<label>Kategori: </label>
+				<input class="form-control" asp-for="CategoryName" readonly/>
+			</div>
+
+			<div class="col-lg-6">
+				<label asp-for="Description"> Açıklama: </label>
+				<input class="form-control" asp-for="Description" readonly/><br/>
+			</div>
+		</div>
+		<br/>
+		<h3>Fatura Bilgisi</h3>
+		<div class="row">
+
+			<div class="col-lg-12">
+				<div>
+					@for (int i = 0; i < @Model.SelectedProducts.Count; i++)
+					{
+						<div>
+							<input asp-for="SelectedProducts[i].Name" readonly/>
+							<input asp-for="SelectedProducts[i].Price" readonly/>
+							
+						</div>
+						<br/>
+					}
+					<input value="Toplam Tutar" readonly/>
+					<input value="@Model.SelectedProducts.Sum(x => x.Price)₺" readonly/>
+
+				</div>
+			</div>
+		</div>
+		<br/>
+		<div class="row">
+			<div class="col-3">
+				<input type="submit" value="Geri" class="btn btn-sm btn-danger"/>
+			</div>
+
+		</div>
+	</div>
+</form>
+
