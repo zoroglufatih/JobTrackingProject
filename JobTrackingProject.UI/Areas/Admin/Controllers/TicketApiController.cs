@@ -60,7 +60,6 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
             {
                 return BadRequest();
             }
-
             var data = _dbContext.Tickets.Find(Convert.ToInt32(key));
             data.TechnicianDate = DateTime.Now;
             JsonConvert.PopulateObject(values, data);

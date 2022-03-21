@@ -165,5 +165,12 @@ namespace JobTrackingProject.UI.Areas.Admin.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public IActionResult AllTicket()
+        {
+
+            return View();
+        }
     }
 }
