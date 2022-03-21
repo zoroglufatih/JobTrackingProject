@@ -1,4 +1,5 @@
-﻿using JobTrackingProject.Entities.Concrete.Entities;
+﻿using System.Security.Cryptography.X509Certificates;
+using JobTrackingProject.Entities.Concrete.Entities;
 using JobTrackingProject.Entities.Concrete.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,12 @@ namespace JobTrackingProject.DataAccessLayer.Concrete.EntityFrameworkCore.Contex
                     x.TicketId,
                     x.ProductId
                 });
+            //builder.Entity<TicketProducts>()
+            //    .Navigation(x => x.Products)
+            //    .UsePropertyAccessMode(PropertyAccessMode.Property);
+            //builder.Entity<TicketProducts>()
+            //    .Navigation(x => x.Tickets)
+            //    .UsePropertyAccessMode(PropertyAccessMode.Property);
         }
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Products> Products { get; set; }

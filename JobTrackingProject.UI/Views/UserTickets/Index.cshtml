@@ -1,0 +1,37 @@
+﻿@model List<Tickets>
+
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Kategori</th>
+            <th>Açıklama</th>
+            <th>Oluşturulma Tarihi</th>
+            <th>Görevlendirme Tarihi</th>
+            <th>Bitiş Tarihi</th>
+            <th>İşlem Fiyatı</th>
+            <th>Ödemek sayfası</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>@item.Categories.CategoryName</td>
+                <td>@item.Description</td>
+                <td>@item.CreatedDate</td>
+                <td>@item.TechnicianDate</td>
+                <td>@item.TicketOverDate</td>
+                <td>
+                    @item.TicketProducts.Sum(x => x.Price)
+                </td>
+                <td>
+                    <a asp-action="Index" asp-controller="Payment">Ödeme sayfası için</a>
+                </td>
+
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
